@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatting Interface</title>
+    <link rel="stylesheet" href="./css/app.css">
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-messages"></div>
+        <div id="loading-symbol">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <!-- <div class="loader"></div> -->
+        </div>
+        <div id="user-input">
+            <input type="text" id="message-input" placeholder="Type your message...">
+            <button id="send-button" class="disabled-button">Send</button>
+            <button id="finish-button">Finish</button>
+        </div>
+    </div>
+    <!-- <div id="confirmation-popup">
+        <div class="popup-content">
+            <p>Are you sure you want to end the chat?</p>
+            <div class="popup-buttons">
+                <button id="yes-button">Yes</button>
+                <button id="no-button">No</button>
+            </div>
+        </div>
+    </div>     -->
+    <div id="confirmation-popup">
+        <div class="popup-content">
+            <p>Are you sure you want to end the chat?</p>
+            <div class="popup-buttons">
+                <button id="yes-button">Yes</button>
+                <button id="no-button">No</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./js/app.js"></script>
+</body>
+</html>

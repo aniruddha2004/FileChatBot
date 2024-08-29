@@ -1,0 +1,250 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url("https://media.istockphoto.com/id/1370884809/photo/futuristic-dots-pattern-on-dark-background-colored-music-wave-big-data-technology-or-science.jpg?b=1&s=612x612&w=0&k=20&c=94ecE7Yayjo-XF8-lG92IrGdkZD4gWTI_XVcVJYUZEg=");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#chat-container {
+    border: 1px solid #555;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: rgba(51, 51, 51, 0.8);
+    color: #fff;
+}
+
+#chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+    display: inline-block;
+    clear: both;
+}
+
+.user-message {
+    background-color: #4CAF50;
+    color: #fff;
+    float: right;
+}
+
+.chatbot-message {
+    background-color: #2196F3;
+    color: #fff;
+    float: left;
+}
+
+#user-input {
+    display: flex;
+    background-color: #444;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#message-input {
+    flex-grow: 1;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: #fff;
+}
+
+#send-button {
+    margin-left: 10px;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+}
+
+#finish-button {
+    margin-left: 10px;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #c23737;
+    color: #fff;
+    cursor: pointer;
+}
+
+#yes-button, #no-button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 15px;
+    background-color: transparent;
+    border: 2px solid #2196F3;
+    color: #2196F3;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#yes-button:hover, #no-button:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+#loading-symbol {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* .loader {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: relative;
+    margin: auto;
+    animation: rotate 2s linear infinite;
+}
+
+.loader:before,
+.loader:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    animation: spin 2s linear infinite;
+}
+
+.loader:before {
+    border: 4px solid transparent;
+    border-top: 4px solid #ff6eff;
+    border-bottom: 4px solid #ff6eff;
+    animation-delay: -1s;
+}
+
+.loader:after {
+    border: 4px solid transparent;
+    border-left: 4px solid #18e3d4;
+}
+
+@keyframes rotate {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes spin {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(45deg);
+    }
+    50% {
+        transform: rotate(135deg);
+    }
+    75% {
+        transform: rotate(225deg);
+    }
+    100% {
+        transform: rotate(315deg);
+    }
+} */
+
+.wave {
+    width: 5px;
+    height: 50px;
+    background: linear-gradient(45deg, cyan, #fff);
+    margin: 10px;
+    animation: wave 1s linear infinite;
+    border-radius: 20px;
+  }
+  .wave:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .wave:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .wave:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  .wave:nth-child(5) {
+    animation-delay: 0.4s;
+  }
+  .wave:nth-child(6) {
+    animation-delay: 0.5s;
+  }
+  .wave:nth-child(7) {
+    animation-delay: 0.6s;
+  }
+  .wave:nth-child(8) {
+    animation-delay: 0.7s;
+  }
+  .wave:nth-child(9) {
+    animation-delay: 0.8s;
+  }
+  .wave:nth-child(10) {
+    animation-delay: 0.9s;
+  }
+  
+  @keyframes wave {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+
+  #confirmation-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup-content {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+}
+
+.popup-buttons {
+    margin-top: 20px;
+}
+
+#send-button.disabled-button {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+

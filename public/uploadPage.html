@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Professional File Upload</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+      background-image: url("https://media.istockphoto.com/id/1370884809/photo/futuristic-dots-pattern-on-dark-background-colored-music-wave-big-data-technology-or-science.jpg?b=1&s=612x612&w=0&k=20&c=94ecE7Yayjo-XF8-lG92IrGdkZD4gWTI_XVcVJYUZEg=");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    #container {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px;
+      padding: 40px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    #formContainer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 20px;
+    }
+
+    #formLeft {
+      flex: 1;
+      margin-right: 40px;
+    }
+
+    #formRight {
+      flex: 1;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(5px);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #eee;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    #fileLabel,
+    button[type="submit"] {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: transparent; /* Updated background color */
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s, border-color 0.2s; /* Include border-color in the transition */
+      font-size: 16px;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: calc(50% - 20px);
+    }
+
+    #fileLabel:hover {
+      background-color: #007bff; /* Updated hover background color */
+    }
+
+    button[type="submit"] {
+      background-color: transparent; /* Updated background color */
+      color: #fff;
+      border: 2px solid #007bff;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s, border-color 0.2s;
+      font-size: 16px;
+      width: 100%;
+      height: 100px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #007bff;
+      border-color: #0056b3;
+    }
+
+    .loading-indicator,
+    .success-message {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 15px;
+      display: none;
+      color: #fff;
+    }
+
+    .loading-indicator {
+      color: #007bff;
+    }
+
+    .success-message {
+      color: #00bd4b;
+    }
+
+    footer {
+      text-align: center;
+      color: #ccc;
+      font-size: 14px;
+      margin-top: 30px;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <h1>AlgoVerse</h1>
+    <p>Ask Your File</p>
+    <div id="formContainer">
+      <div id="formLeft">
+        <form id="uploadForm" enctype="multipart/form-data" action="http://localhost:3000/api/upload" method="POST">
+          <label for="fileInput" id="fileLabel">Choose File <i class="icon fas fa-file-upload"></i></label>
+          <input type="file" name="file" id="fileInput" onchange="updateFileName()" />
+          <button type="submit" id="uploadButton" disabled><i class="icon fas fa-cloud-upload-alt"></i>Upload File</button>
+        </form>
+      </div>
+      <div id="formRight">
+        <p>Please make sure you only upload files of pdf, docx, png, jpg, or jpeg type.</p>
+        <p>By using this service, you agree to our <a href="/terms" target="_blank">Terms of Service</a>.</p>
+      </div>
+    </div>
+    <div class="loading-indicator" id="loadingIndicator">Uploading...</div>
+    <div class="success-message" id="successMessage">File uploaded successfully!</div>
+    <footer>
+      <p>© 2023 AlgoVerse. All rights reserved.</p>
+      <p><a href="/privacy-policy" target="_blank">Privacy Policy</a> | <a href="/contact-us" target="_blank">Contact
+          Us</a></p>
+    </footer>
+  </div>
+
+  <script>
+    function updateFileName() {
+      const fileInput = document.getElementById('fileInput');
+      const fileLabel = document.getElementById('fileLabel');
+      const uploadButton = document.getElementById('uploadButton');
+      const fileName = fileInput.files[0]?.name || 'Choose File';
+      fileLabel.textContent = fileName + ' ';
+
+      // Enable the upload button when a file is selected
+      if (fileInput.files.length > 0) {
+        uploadButton.disabled = false;
+      } else {
+        uploadButton.disabled = true;
+      }
+    }
+
+    const uploadForm = document.getElementById('uploadForm');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    const successMessage = document.getElementById('successMessage');
+
+    uploadForm.addEventListener('submit', (e) => {
+      //e.preventDefault();
+      // Display the loading indicator during file upload
+      loadingIndicator.style.display = 'block';
+      // Simulate file upload delay (remove this in production)
+      setTimeout(() => {
+        // Hide the loading indicator and show the success message after a short delay
+        loadingIndicator.style.display = 'none';
+        successMessage.style.display = 'block';
+      }, 4000); // Replace this value with the actual time taken for file upload in production
+    });
+  </script>
+</body>
+
+</html>
